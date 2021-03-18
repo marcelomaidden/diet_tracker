@@ -7,14 +7,16 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (loading)
+    if (loading) {
       setMessage("Loading");
+      setError(false);
+    }      
   }, [loading]);
 
   const handleLogin = () => {
-    console.log(`CLIENT_ID ${process.env.REACT_APP_CLIENT_ID}`);
     setLoading(true);
 
     fetch('oauth/token', {
@@ -28,9 +30,20 @@ const Login = () => {
         "client_secret": process.env.REACT_APP_CLIENT_SECRET,
       }),
     })
-      .then(result => {
+      .then(result => result.json())
+      .then(data => {
         setLoading(false);
-        setMessage(result.statusText);
+        if (data.error) {
+          setMessage('Invalid credentials');
+          setError(true);
+        } else {
+          setMessage(data.access_token);
+        }
+      })
+      .catch(() => {
+        setLoading(false);
+        setError(true);
+        setMessage("Invalid credentials");
       });
   };
 
@@ -68,7 +81,16 @@ const Login = () => {
         Enter
       </button>
       {loading ? <Spinner /> : ''}
-      <div>{message}</div>
+      <div>
+        {
+          error ? 
+            <div className="alert alert-danger" role="alert">
+              {message}
+            </div>
+          :
+            ''
+        }
+      </div>
     </div>
   );
 };
