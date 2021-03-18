@@ -8,17 +8,22 @@ import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Home from './src/components/Home';
 import NavBar from './src/containers/NavBar';
+import Login from './src/containers/Login';
+import '../../assets/stylesheets/frontend.scss';
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <>
-      <Router>
+    <Router>
+      <div className="w-50 mx-auto background-light">
         <Switch>
-          <Route path="/" exact component={Home} />
+          <div className="h-75">
+            <Route path="/" exact component={Home} />
+            <Route path="/login" exact component={Login} />
+          </div>
         </Switch>
         <NavBar />
-      </Router>
-    </>,
+      </div>
+    </Router>,
     document.body.appendChild(document.createElement('div')),
   );
 });

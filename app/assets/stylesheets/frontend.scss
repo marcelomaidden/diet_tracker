@@ -1,3 +1,29 @@
 // Place all the styles related to the Frontend controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+:root {
+  --blue-color: #50b5e8;
+  --dark-color: #5b8092;
+  --green-color: #97e493;
+  --light-color: #f3f4f6;
+}
+
+.background-blue {
+  background-color: var(--blue-color);
+}
+
+.background-dark {
+  background-color: var(--dark-color);
+}
+
+.background-light {
+  background-color: var(--light-color);
+}
+
+.background-green {
+  background-color: var(--green-color);
+}
+
+.main {
+  min-height: 80%;
+}
