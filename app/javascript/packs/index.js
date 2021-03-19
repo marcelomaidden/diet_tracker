@@ -12,6 +12,7 @@ import thunk from 'redux-thunk';
 import Home from './src/components/Home';
 import NavBar from './src/containers/NavBar';
 import Login from './src/containers/Login';
+import SignUp from './src/containers/SignUp';
 import '../../assets/stylesheets/frontend.scss';
 import rootReducer from './src/reducers';
 
@@ -26,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div className="main">
               <Route path="/" exact component={Home} />
               <Route path="/login" exact component={Login} />
+              <Route path="/sign-up" exact component={SignUp} />
             </div>
           </Switch>
           <NavBar />

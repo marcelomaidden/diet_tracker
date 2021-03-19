@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import '../../../../assets/stylesheets/frontend.scss';
 import Spinner from '../components/Spinner';
 import { setCredentials } from '../actions/credentials';
@@ -89,6 +89,7 @@ const Login = ({ credentials, setCredentials }) => {
       >
         Enter
       </button>
+      or <Link to="/sign-up">Create and account</Link>
       {loading ? <Spinner /> : ''}
       <div>
         {
