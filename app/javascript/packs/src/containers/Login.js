@@ -4,7 +4,7 @@ import { PropTypes } from 'prop-types';
 import { useHistory, Link } from "react-router-dom";
 import '../../../../assets/stylesheets/frontend.scss';
 import Spinner from '../components/Spinner';
-import { setCredentials } from '../actions/credentials';
+import { setCredentialsAsync } from '../actions/credentials';
 
 const Login = ({ credentials, setCredentials }) => {
   const [email, setEmail] = useState('');
@@ -15,45 +15,22 @@ const Login = ({ credentials, setCredentials }) => {
   const history = useHistory();
 
   useEffect(() => {
-    if (loading) {
+    if (credentials.message === 'Invalid credentials') {
+      setError(true);
+      setMessage(credentials.message);
+      setLoading(false);
+    } else if (credentials.access_token !== '' && typeof credentials.access_token !== 'undefined')
+      history.push('/');
+    else if (loading) {
       setMessage('Loading');
       setError(false);
-    } else if (credentials.access_token !== '')
-      history.push('/');
-  }, [loading]);
+    } 
+  }, [loading, credentials.access_token, credentials.message]);
 
   const handleLogin = () => {
     setLoading(true);
     setError(false);
-
-    fetch('oauth/token', {
-      method: 'post',
-      headers: { 'Content-type': 'application/json;charset=UTF-8' },
-      body: JSON.stringify({
-        email,
-        password,
-        grant_type: 'password',
-        client_id: process.env.REACT_APP_CLIENT_ID,
-        client_secret: process.env.REACT_APP_CLIENT_SECRET,
-      }),
-    })
-      .then(result => result.json())
-      .then(data => {
-        setLoading(false);
-        if (data.error) {
-          setMessage('Invalid credentials');
-          setError(true);
-        } else {
-          setCredentials(data.access_token);
-          setLoading(false);
-          history.push('/');
-        }
-      })
-      .catch(() => {
-        setLoading(false);
-        setError(true);
-        setMessage('Invalid credentials');
-      });
+    setCredentials(email, password);
   };
 
   return (
@@ -107,9 +84,6 @@ const Login = ({ credentials, setCredentials }) => {
 };
 
 Login.propTypes = {
-  credentials: PropTypes.shape({
-    access_token: PropTypes.string.isRequired,
-  }).isRequired,
   setCredentials: PropTypes.func.isRequired,
 };
 
@@ -118,7 +92,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  setCredentials: token => dispatch(setCredentials(token)),
+  setCredentials: (email, password) => dispatch(setCredentialsAsync(email,password)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :doorkeeper_authorize!, except: [:create]
+  before_action :doorkeeper_authorize!, except: [:create, :me]
   def create
     user = User.new(user_params)
 
@@ -10,7 +10,18 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /me.json
+  def me
+    render json: current_resource_owner
+  end
+
   private
+
+  # Find the user that owns the access token
+  def current_resource_owner
+    User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+  end
+
   def user_params
     params.require(:user).permit(:name, :email, :password, :photo)
   end
