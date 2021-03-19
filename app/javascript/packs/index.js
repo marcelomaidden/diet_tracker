@@ -6,24 +6,32 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 import Home from './src/components/Home';
 import NavBar from './src/containers/NavBar';
 import Login from './src/containers/Login';
 import '../../assets/stylesheets/frontend.scss';
+import rootReducer from './src/reducers';
+
+const store = createStore(rootReducer, applyMiddleware(thunk));
 
 document.addEventListener('DOMContentLoaded', () => {
   ReactDOM.render(
-    <Router>
-      <div className="w-50 mx-auto background-light">
-        <Switch>
-          <div className="main">
-            <Route path="/" exact component={Home} />
-            <Route path="/login" exact component={Login} />
-          </div>
-        </Switch>
-        <NavBar />
-      </div>
-    </Router>,
+    <Provider store={store}>
+      <Router>
+        <div className="w-50 mx-auto background-light">
+          <Switch>
+            <div className="main">
+              <Route path="/" exact component={Home} />
+              <Route path="/login" exact component={Login} />
+            </div>
+          </Switch>
+          <NavBar />
+        </div>
+      </Router>
+    </Provider>,
     document.body.appendChild(document.createElement('div')),
   );
 });

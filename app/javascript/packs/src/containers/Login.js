@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+import { useHistory } from "react-router-dom";
 import '../../../../assets/stylesheets/frontend.scss';
 import Spinner from '../components/Spinner';
+import { setCredentials } from '../actions/credentials';
 
-const Login = () => {
+const Login = ({ credentials, setCredentials }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
+  const history = useHistory();
 
   useEffect(() => {
     if (loading) {
       setMessage('Loading');
       setError(false);
-    }
+    } else if (credentials.access_token !== '')
+      history.push('/');
   }, [loading]);
 
   const handleLogin = () => {
     setLoading(true);
+    setError(false);
 
     fetch('oauth/token', {
       method: 'post',
@@ -37,7 +44,9 @@ const Login = () => {
           setMessage('Invalid credentials');
           setError(true);
         } else {
-          setMessage(data.access_token);
+          setCredentials(data.access_token);
+          setLoading(false);
+          history.push('/');
         }
       })
       .catch(() => {
@@ -96,4 +105,19 @@ const Login = () => {
   );
 };
 
-export default Login;
+Login.propTypes = {
+  credentials: PropTypes.shape({
+    access_token: PropTypes.string.isRequired,
+  }).isRequired,
+  setCredentials: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
+  credentials: state.credentials,
+});
+
+const mapDispatchToProps = dispatch => ({
+  setCredentials: token => dispatch(setCredentials(token)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
