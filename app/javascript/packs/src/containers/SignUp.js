@@ -16,7 +16,7 @@ const SignUp = ({ user, createUser }) => {
 
   useEffect(() => {
     if (user.message === 'success') {
-      history.push('/login');
+      history.push('/');
     }
     else if (user.errors.length > 0) {
       setErrors(user.errors);

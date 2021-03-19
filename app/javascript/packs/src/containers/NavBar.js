@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 import '../../../../assets/stylesheets/frontend.scss';
 import '../../../../assets/stylesheets/NavBar.scss';
 
-const NavBar = () => (
+const NavBar = ({ user }) => (
   <nav className="background-light pb-4">
+    {user.info.name}
     <Link
       to="/"
       className="background-blue p-4 text-decoration-none text-white border"
@@ -20,4 +22,6 @@ const NavBar = () => (
   </nav>
 );
 
-export default NavBar;
+const mapStateToProps = state => ({ user: state.user });
+
+export default connect(mapStateToProps, null)(NavBar);
