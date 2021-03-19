@@ -6,7 +6,7 @@ import {
 } from '../actions/user';
 
 const initialState = {
-  info: { name: '', email: '' },
+  info: { name: '', email: '', photo: '' },
   message: '',
   errors: []
 }

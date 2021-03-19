@@ -12,6 +12,7 @@ const SignUp = ({ user, createUser }) => {
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
   const [errors, setErrors] = useState([]);
+  const [photo, setPhoto] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
@@ -30,7 +31,7 @@ const SignUp = ({ user, createUser }) => {
   const handleCreateUser = () => {
     setLoading(true);
     setErrors([]);
-    createUser(name, email, password);
+    createUser(name, email, password, photo);
   };
 
   return (
@@ -70,6 +71,17 @@ const SignUp = ({ user, createUser }) => {
           aria-describedby="basic-addon1"
         />
       </div>
+      <div className="input-group mb-3">
+        <input
+          type="text"
+          className="form-control"
+          placeholder="enter the url for an image on the internet"
+          aria-label="photo"
+          name="photo"
+          onChange={e => { setPhoto(e.target.value); }}
+          aria-describedby="basic-addon1"
+        />
+      </div>
       <button
         type="button"
         className="button background-blue mx-auto p-3 w-100 text-white"
@@ -106,8 +118,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createUser: (name, email, password) => { 
-    dispatch(createUserAsync(name, email, password))
+  createUser: (name, email, password, photo) => { 
+    dispatch(createUserAsync(name, email, password, photo))
   },
 });
 

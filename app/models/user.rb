@@ -14,5 +14,5 @@ class User < ApplicationRecord
            foreign_key: :resource_owner_id,
            dependent: :delete_all
 
-  validates :name, :email, :password, presence: true
+  validates :name, :email, :password, :photo, presence: true
 end

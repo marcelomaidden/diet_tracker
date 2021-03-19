@@ -9,7 +9,7 @@ export const createUserError = errors => ({ type: CREATE_USER_ERROR, errors});
 export const createUserSuccess = user => ({ type: CREATE_USER_SUCCESS, user});
 import { setCredentialsAsync } from './credentials';
 
-export const createUserAsync = (name, email, password) => (
+export const createUserAsync = (name, email, password, photo) => (
   async dispatch => {
     dispatch(creatingUser());
     return fetch('/create', {
@@ -20,6 +20,7 @@ export const createUserAsync = (name, email, password) => (
           name, 
           email,
           password,
+          photo,
         }
       }),
     })

@@ -6,7 +6,7 @@ import '../../../../assets/stylesheets/NavBar.scss';
 
 const NavBar = ({ user }) => (
   <nav className="background-light pb-4">
-    {user.info.name}
+    <img src={user.info.photo} alt="user image" className="profile" />
     <Link
       to="/"
       className="background-blue p-4 text-decoration-none text-white border"
