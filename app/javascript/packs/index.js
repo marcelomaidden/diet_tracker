@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
     <Router>
       <div className="w-50 mx-auto background-light">
         <Switch>
-          <div className="h-75">
+          <div className="main">
             <Route path="/" exact component={Home} />
             <Route path="/login" exact component={Login} />
           </div>

@@ -85,7 +85,7 @@ const Login = () => {
         {
           error
             ? (
-              <div className="alert alert-danger" role="alert">
+              <div className="alert alert-danger mt-2" role="alert">
                 {message}
               </div>
             )
