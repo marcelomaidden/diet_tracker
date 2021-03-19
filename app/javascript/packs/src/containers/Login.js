@@ -6,14 +6,14 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
+  const [message, setMessage] = useState('');
   const [error, setError] = useState(false);
 
   useEffect(() => {
     if (loading) {
-      setMessage("Loading");
+      setMessage('Loading');
       setError(false);
-    }      
+    }
   }, [loading]);
 
   const handleLogin = () => {
@@ -22,12 +22,12 @@ const Login = () => {
     fetch('oauth/token', {
       method: 'post',
       headers: { 'Content-type': 'application/json;charset=UTF-8' },
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         email,
         password,
-        "grant_type": "password",
-        "client_id": process.env.REACT_APP_CLIENT_ID,
-        "client_secret": process.env.REACT_APP_CLIENT_SECRET,
+        grant_type: 'password',
+        client_id: process.env.REACT_APP_CLIENT_ID,
+        client_secret: process.env.REACT_APP_CLIENT_SECRET,
       }),
     })
       .then(result => result.json())
@@ -43,7 +43,7 @@ const Login = () => {
       .catch(() => {
         setLoading(false);
         setError(true);
-        setMessage("Invalid credentials");
+        setMessage('Invalid credentials');
       });
   };
 
@@ -83,12 +83,13 @@ const Login = () => {
       {loading ? <Spinner /> : ''}
       <div>
         {
-          error ? 
-            <div className="alert alert-danger" role="alert">
-              {message}
-            </div>
-          :
-            ''
+          error
+            ? (
+              <div className="alert alert-danger" role="alert">
+                {message}
+              </div>
+            )
+            : ''
         }
       </div>
     </div>
