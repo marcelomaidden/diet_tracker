@@ -13,19 +13,19 @@ const Login = ({ credentials, setCredentials }) => {
   const [alert, setAlert] = useState('');
   const [error, setError] = useState(false);
   const history = useHistory();
-  const { message, access_token } = credentials;
+  const { message, accessToken } = credentials;
 
   useEffect(() => {
     if (message === 'Invalid credentials') {
       setError(true);
       setAlert(message);
       setLoading(false);
-    } else if (access_token !== '' && typeof access_token !== 'undefined') history.push('/');
+    } else if (accessToken !== '' && typeof accessToken !== 'undefined') history.push('/');
     else if (loading) {
       setAlert('Loading');
       setError(false);
     }
-  }, [loading, access_token, message]);
+  }, [loading, accessToken, message]);
 
   const handleLogin = () => {
     setLoading(true);
@@ -88,7 +88,7 @@ const Login = ({ credentials, setCredentials }) => {
 Login.propTypes = {
   credentials: PropTypes.shape({
     message: PropTypes.string.isRequired,
-    access_token: PropTypes.string.isRequired,
+    accessToken: PropTypes.string.isRequired,
   }).isRequired,
   setCredentials: PropTypes.func.isRequired,
 };

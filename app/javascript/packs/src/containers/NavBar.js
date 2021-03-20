@@ -5,28 +5,32 @@ import { PropTypes } from 'prop-types';
 import '../../../../assets/stylesheets/frontend.scss';
 import '../../../../assets/stylesheets/NavBar.scss';
 
-const NavBar = ({ user }) => {
+const NavBar = ({ user, credentials }) => {
   const { photo } = user.info;
+  const { accessToken } = credentials;
+
   return (
     <nav className="background-light pb-4">
-      {
-        photo !== '' ?
-          <img src={user.info.photo} alt="User profile" className="profile" />
-        :
-          ''
-      }
       <Link
         to="/"
         className="background-blue p-4 text-decoration-none text-white border"
       >
         Home
       </Link>
-      <Link
-        to="/login"
-        className="background-blue p-4 text-decoration-none text-white border"
-      >
-        Sign-in
-      </Link>
+      {
+        accessToken === '' ?
+          <Link
+            to="/login"
+            className="background-blue p-4 text-decoration-none text-white border"
+          >
+            Sign-in
+          </Link>
+        :
+          photo !== '' ?
+            <img src={user.info.photo} alt="User profile" className="profile" />
+          :
+            ''
+      }
     </nav>
   );
 };
@@ -39,6 +43,11 @@ NavBar.propTypes = {
   }).isRequired,
 };
 
-const mapStateToProps = state => ({ user: state.user });
+const mapStateToProps = state => (
+  { 
+    user: state.user,
+    credentials: state.credentials,
+  }
+);
 
 export default connect(mapStateToProps, null)(NavBar);
