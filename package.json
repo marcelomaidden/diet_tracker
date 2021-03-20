@@ -1,6 +1,9 @@
 {
   "name": "diet-tracker",
   "private": true,
+  "engines": {
+    "node": "^15.11.x"
+  },
   "dependencies": {
     "@babel/preset-react": "^7.12.13",
     "@rails/actioncable": "^6.0.0",
