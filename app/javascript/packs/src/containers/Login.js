@@ -10,21 +10,22 @@ const Login = ({ credentials, setCredentials }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState('');
+  const [alert, setAlert] = useState('');
   const [error, setError] = useState(false);
   const history = useHistory();
+  const { message, access_token } = credentials;
 
   useEffect(() => {
-    if (credentials.message === 'Invalid credentials') {
+    if (message === 'Invalid credentials') {
       setError(true);
-      setMessage(credentials.message);
+      setAlert(message);
       setLoading(false);
-    } else if (credentials.access_token !== '' && typeof credentials.access_token !== 'undefined') history.push('/');
+    } else if (access_token !== '' && typeof access_token !== 'undefined') history.push('/');
     else if (loading) {
-      setMessage('Loading');
+      setAlert('Loading');
       setError(false);
     }
-  }, [loading, credentials.access_token, credentials.message]);
+  }, [loading, access_token, message]);
 
   const handleLogin = () => {
     setLoading(true);
@@ -74,7 +75,7 @@ const Login = ({ credentials, setCredentials }) => {
           error
             ? (
               <div className="alert alert-danger mt-2" role="alert">
-                {message}
+                {alert}
               </div>
             )
             : ''

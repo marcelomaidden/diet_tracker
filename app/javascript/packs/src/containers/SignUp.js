@@ -11,24 +11,25 @@ const SignUp = ({ user, createUser }) => {
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
   const [loading, setLoading] = useState(false);
-  const [errors, setErrors] = useState([]);
+  const [alerts, setAlerts] = useState([]);
   const [photo, setPhoto] = useState([]);
   const history = useHistory();
+  const { message, errors } = user;
 
   useEffect(() => {
-    if (user.message === 'success') {
+    if (message === 'success') {
       history.push('/');
-    } else if (user.errors.length > 0) {
-      setErrors(user.errors);
+    } else if (errors.length > 0) {
+      setAlerts(errors);
       setLoading(false);
     } else if (loading) {
-      setErrors([]);
+      setAlerts([]);
     }
-  }, [loading, user.errors]);
+  }, [loading, errors]);
 
   const handleCreateUser = () => {
     setLoading(true);
-    setErrors([]);
+    setAlerts([]);
     createUser(name, email, password, photo);
   };
 
@@ -90,11 +91,11 @@ const SignUp = ({ user, createUser }) => {
       {loading ? <Spinner /> : ''}
       <div>
         {
-          errors
+          alerts
             ? (
-              errors.map(error => (
-                <div className="alert alert-danger mt-2" role="alert" key={error}>
-                  {error}
+              alerts.map(alert => (
+                <div className="alert alert-danger mt-2" role="alert" key={alert}>
+                  {alert}
                 </div>
               ))
             )
