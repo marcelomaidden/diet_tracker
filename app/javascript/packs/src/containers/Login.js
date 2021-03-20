@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { useHistory, Link } from 'react-router-dom';
-import '../../stylesheets/frontend.scss';
+//import '../../stylesheets/frontend.scss';
 import Spinner from '../components/Spinner';
 import { setCredentialsAsync } from '../actions/credentials';
 
