@@ -13,7 +13,7 @@ import Home from './src/components/Home';
 import NavBar from './src/containers/NavBar';
 import Login from './src/containers/Login';
 import SignUp from './src/containers/SignUp';
-import '../../assets/stylesheets/frontend.scss';
+import './stylesheets/frontend.scss';
 import rootReducer from './src/reducers';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));

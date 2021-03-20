@@ -2,8 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import '../../../../assets/stylesheets/frontend.scss';
-import '../../../../assets/stylesheets/NavBar.scss';
+import '../../stylesheets/frontend.scss';
+import '../../stylesheets/NavBar.scss';
 
 const NavBar = ({ user, credentials }) => {
   const { photo } = user.info;
