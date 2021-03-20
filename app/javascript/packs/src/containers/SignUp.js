@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { useHistory } from 'react-router-dom';
-//import '../../stylesheets/frontend.scss';
 import Spinner from '../components/Spinner';
 import { createUserAsync } from '../actions/user';
 
