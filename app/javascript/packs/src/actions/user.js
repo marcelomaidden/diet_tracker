@@ -1,14 +1,13 @@
-import { setCredentialsAsync } from './credentials';
+import { setCredentialsAsync, createUserCredentials } from './credentials';
 
 export const SET_USER = 'SET_USER';
 export const CREATE_USER = 'CREATE_USER';
 export const CREATING_USER = 'CREATING_USER';
 export const CREATE_USER_ERROR = 'CREATE_USER_ERROR';
-export const CREATE_USER_SUCCESS = 'CREATE_USER_SUCCESS';
+export const CREATE_USER_CREDENTIALS = 'CREATE_USER_CREDENTIALS';
 
 export const creatingUser = () => ({ type: CREATING_USER });
 export const createUserError = errors => ({ type: CREATE_USER_ERROR, errors });
-export const createUserSuccess = user => ({ type: CREATE_USER_SUCCESS, user });
 
 export const createUserAsync = (name, email, password, photo) => (
   async dispatch => {
@@ -30,7 +29,7 @@ export const createUserAsync = (name, email, password, photo) => (
         if (!data.id) return dispatch(createUserError(data));
 
         dispatch(setCredentialsAsync(email, password));
-        return dispatch(createUserSuccess(data));
+        return dispatch(createUserCredentials(data));
       });
   }
 );

@@ -2,8 +2,9 @@ import {
   SET_USER,
   CREATING_USER,
   CREATE_USER_ERROR,
-  CREATE_USER_SUCCESS,
 } from '../actions/user';
+
+import { CREATE_USER_CREDENTIALS } from '../actions/credentials';
 
 const initialState = {
   info: { name: '', email: '', photo: '' },
@@ -19,7 +20,7 @@ const userReducer = (state = initialState, action) => {
       return { ...state, message: 'Creating User' };
     case CREATE_USER_ERROR:
       return { ...state, message: '', errors: action.errors.errors };
-    case CREATE_USER_SUCCESS:
+    case CREATE_USER_CREDENTIALS:
       return {
         ...state, message: 'success', errors: [], info: action.user,
       };

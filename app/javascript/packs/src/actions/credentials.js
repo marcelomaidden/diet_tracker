@@ -1,10 +1,10 @@
-import { createUserSuccess } from './user';
-
 export const SET_CREDENTIALS = 'SET_CREDENTIALS';
 export const SET_CREDENTIALS_ERROR = 'SET_CREDENTIALS_ERROR';
+export const CREATE_USER_CREDENTIALS = 'CREATE_USER_CREDENTIALS';
 
 export const setCredentials = token => ({ type: SET_CREDENTIALS, token });
 export const setCredentialsError = () => ({ type: SET_CREDENTIALS_ERROR });
+export const createUserCredentials = user => ({ type: CREATE_USER_CREDENTIALS, user });
 
 export const setCredentialsAsync = (email, password) => (
   async dispatch => fetch('oauth/token', {
@@ -33,7 +33,7 @@ export const setCredentialsAsync = (email, password) => (
         })
           .then(result => result.json())
           .then(user => {
-            dispatch(createUserSuccess(user));
+            dispatch(createUserCredentials(user));
           })
           .catch(() => dispatch(setCredentialsError()));
         dispatch(setCredentials(data.access_token));

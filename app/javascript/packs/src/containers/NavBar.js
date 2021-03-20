@@ -18,24 +18,31 @@ const NavBar = ({ user, credentials }) => {
         Home
       </Link>
       {
-        accessToken === '' ?
-          <Link
-            to="/login"
-            className="background-blue p-4 text-decoration-none text-white border"
-          >
-            Sign-in
-          </Link>
-        :
-          photo !== '' ?
-            <img src={user.info.photo} alt="User profile" className="profile" />
-          :
-            ''
+        accessToken === ''
+          ? (
+            <Link
+              to="/login"
+              className="background-blue p-4 text-decoration-none text-white border"
+            >
+              Sign-in
+            </Link>
+          )
+          : (
+            <img
+              src={user.info.photo}
+              alt="User profile"
+              className={`${photo !== '' ? 'profile' : 'd-none'}`}
+            />
+          )
       }
     </nav>
   );
 };
 
 NavBar.propTypes = {
+  credentials: PropTypes.shape({
+    accessToken: PropTypes.string,
+  }).isRequired,
   user: PropTypes.shape({
     info: PropTypes.shape({
       photo: PropTypes.string,
@@ -44,7 +51,7 @@ NavBar.propTypes = {
 };
 
 const mapStateToProps = state => (
-  { 
+  {
     user: state.user,
     credentials: state.credentials,
   }
