@@ -23,13 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
     <Provider store={store}>
       <Router>
         <div className="w-50 mx-auto background-light">
-          <Switch>
-            <div className="main">
+          <div className="main">
+            <Switch>
+
               <Route path="/" exact component={Home} />
               <Route path="/login" exact component={Login} />
               <Route path="/sign-up" exact component={SignUp} />
-            </div>
-          </Switch>
+            </Switch>
+          </div>
           <NavBar />
         </div>
       </Router>

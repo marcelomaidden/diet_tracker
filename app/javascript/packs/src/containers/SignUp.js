@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { useHistory } from "react-router-dom";
+import { useHistory } from 'react-router-dom';
 import '../../../../assets/stylesheets/frontend.scss';
 import Spinner from '../components/Spinner';
 import { createUserAsync } from '../actions/user';
@@ -18,14 +18,12 @@ const SignUp = ({ user, createUser }) => {
   useEffect(() => {
     if (user.message === 'success') {
       history.push('/');
-    }
-    else if (user.errors.length > 0) {
+    } else if (user.errors.length > 0) {
       setErrors(user.errors);
       setLoading(false);
-    }
-    else if (loading) {
+    } else if (loading) {
       setErrors([]);
-    }       
+    }
   }, [loading, user.errors]);
 
   const handleCreateUser = () => {
@@ -98,9 +96,7 @@ const SignUp = ({ user, createUser }) => {
                 <div className="alert alert-danger mt-2" role="alert" key={error}>
                   {error}
                 </div>
-              )
-                
-              )
+              ))
             )
             : ''
         }
@@ -110,6 +106,10 @@ const SignUp = ({ user, createUser }) => {
 };
 
 SignUp.propTypes = {
+  user: PropTypes.shape({
+    message: PropTypes.string.isRequired,
+    errors: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
   createUser: PropTypes.func.isRequired,
 };
 
@@ -118,8 +118,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  createUser: (name, email, password, photo) => { 
-    dispatch(createUserAsync(name, email, password, photo))
+  createUser: (name, email, password, photo) => {
+    dispatch(createUserAsync(name, email, password, photo));
   },
 });
 
