@@ -33,8 +33,8 @@ const SignUp = ({ user, createUser }) => {
   };
 
   return (
-    <div className="d-flex flex-column m-auto w-75">
-      <h1 className="h4 mx-auto mt-3 mb-5">Fill your information</h1>
+    <div className="d-flex flex-column mx-auto w-75">
+      <h1 className="h4 mx-auto mt-3 mb-3">Fill your information</h1>
       <div className="input-group mb-3">
         <input
           type="text"
@@ -88,7 +88,7 @@ const SignUp = ({ user, createUser }) => {
         Enter
       </button>
       {loading ? <Spinner /> : ''}
-      <div>
+      <div className="alerts">
         {
           alerts
             ? (
