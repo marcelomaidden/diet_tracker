@@ -24,7 +24,8 @@ h2,
 h3,
 h4,
 h5,
-h6 {
+h6,
+.button {
   font-family: helvetica_bold, sans-serif;
 }
 
@@ -50,5 +51,5 @@ body {
 }
 
 .main {
-  height: 90vh;
+  height: 800px;
 }
