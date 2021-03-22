@@ -43,7 +43,7 @@ const NavBar = ({ credentials }) => {
                   text-center
                   w-25"
               >
-                <i class="fa fa-bar-chart"></i>
+                <i className="fa fa-bar-chart" />
                 <span>Add measure</span>
               </Link>
               <Link
@@ -58,7 +58,7 @@ const NavBar = ({ credentials }) => {
                   text-white
                   border"
               >
-                <i class="fa fa-pie-chart"></i>
+                <i className="fa fa-pie-chart" />
                 <span>Your progress</span>
               </Link>
               <Link

@@ -13,6 +13,7 @@ import Home from './src/components/Home';
 import NavBar from './src/containers/NavBar';
 import Login from './src/containers/Login';
 import SignUp from './src/containers/SignUp';
+import Measurements from './src/containers/Measurements';
 import rootReducer from './src/reducers';
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
@@ -24,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <div className="w-50 mx-auto background-light">
           <div className="main">
             <Switch>
-
+              <Route path="/measurements" component={Measurements} />
               <Route path="/" exact component={Home} />
               <Route path="/login" exact component={Login} />
               <Route path="/sign-up" exact component={SignUp} />
