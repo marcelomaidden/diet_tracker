@@ -2,9 +2,9 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 const Category = ({ name, photo }) => (
-  <li>
+  <li className="mb-2">
     <img src={photo} alt={name} className="category-photo" />
-    { name }
+    <span>{ name }</span>
   </li>
 );
 
