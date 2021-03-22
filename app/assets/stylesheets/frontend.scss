@@ -9,8 +9,28 @@
   --gray-color: #8090a0;
 }
 
+@font-face {
+  font-family: helvetica_light;
+  src: url(fonts/helvetica_light.ttf);
+}
+
+@font-face {
+  font-family: helvetica_bold;
+  src: url(fonts/helvetica_bold.ttf);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: helvetica_bold, sans-serif;
+}
+
 body {
   color: var(--gray-color);
+  font-family: helvetica_light, sans-serif;
 }
 
 .background-blue {
