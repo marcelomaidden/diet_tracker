@@ -3,34 +3,72 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 
-const NavBar = ({ user, credentials }) => {
-  const { photo } = user.info;
+const NavBar = ({ credentials }) => {
   const { accessToken } = credentials;
 
   return (
     <nav className="background-light pb-4">
-      <Link
-        to="/"
-        className="background-blue p-4 text-decoration-none text-white border"
-      >
-        Home
-      </Link>
       {
         accessToken === ''
           ? (
             <Link
               to="/login"
-              className="background-blue p-4 text-decoration-none text-white border"
+              className="background-blue p-4 w-25 text-decoration-none text-white border"
             >
               Sign-in
             </Link>
           )
           : (
-            <img
-              src={user.info.photo}
-              alt="User profile"
-              className={`${photo !== '' ? 'profile' : 'd-none'}`}
-            />
+            <div className="d-flex flex-md-row flex-column">
+              <Link
+                to="/dashboard"
+                className="background-blue
+                p-4
+                w-25
+                text-center
+                text-decoration-none
+                text-white border
+                d-flex"
+              >
+                Dashboard
+              </Link>
+              <Link
+                to="/measurements"
+                className="background-dark
+                  p-4
+                  text-decoration-none
+                  d-flex
+                  flex-column
+                  text-white border
+                  text-center
+                  w-25"
+              >
+                <i class="fa fa-bar-chart"></i>
+                <span>Add measure</span>
+              </Link>
+              <Link
+                to="/progress"
+                className="background-dark
+                  p-4
+                  text-decoration-none
+                  d-flex
+                  w-25
+                  flex-column
+                  text-center
+                  text-white
+                  border"
+              >
+                <i class="fa fa-pie-chart"></i>
+                <span>Your progress</span>
+              </Link>
+              <Link
+                to="/menu"
+                className="background-dark p-4 w-25 d-flex flex-column text-center text-decoration-none text-white border"
+              >
+                <span className="fa">...</span>
+                <span>More</span>
+              </Link>
+            </div>
           )
       }
     </nav>
@@ -41,16 +79,10 @@ NavBar.propTypes = {
   credentials: PropTypes.shape({
     accessToken: PropTypes.string,
   }).isRequired,
-  user: PropTypes.shape({
-    info: PropTypes.shape({
-      photo: PropTypes.string,
-    }).isRequired,
-  }).isRequired,
 };
 
 const mapStateToProps = state => (
   {
-    user: state.user,
     credentials: state.credentials,
   }
 );

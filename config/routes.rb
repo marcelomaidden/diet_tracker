@@ -16,4 +16,7 @@ Rails.application.routes.draw do
   root 'frontend#index'
   get 'login', to: 'frontend#index'
   get 'sign-up', to: 'frontend#index'
+  get 'measurements', to: 'frontend#index'
+  get 'menu', to: 'frontend#index'
+  get 'progress', to: 'frontend#index'
 end

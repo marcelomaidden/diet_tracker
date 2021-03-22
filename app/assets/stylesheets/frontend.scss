@@ -6,6 +6,11 @@
   --dark-color: #5b8092;
   --green-color: #97e493;
   --light-color: #f3f4f6;
+  --gray-color: #8090a0;
+}
+
+body {
+  color: var(--gray-color);
 }
 
 .background-blue {
