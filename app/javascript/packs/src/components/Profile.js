@@ -18,8 +18,8 @@ const Menu = ({ user, credentials }) => {
       <Header title="Profile" />
       <div className="background-blue p-3 d-flex flex-column">
         <img src={photo} alt="Profile" className="mx-auto rounded-circle profile" />
-        <div className="p-2 mx-auto text-white">{name}</div>
-        <div className="p-2 mx-auto text-white">{email}</div>
+        <div className="p-2 mx-auto text-white profile-name">{name}</div>
+        <div className="p-2 mx-auto gray-color">{email}</div>
       </div> 
     </div>
   )

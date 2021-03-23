@@ -9,7 +9,8 @@
   --gray-color: #8090a0;
 }
 
-a {
+a, 
+.gray-color {
   color: var(--gray-color);
   font-weight: bold;
 }
