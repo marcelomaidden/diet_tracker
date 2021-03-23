@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { useHistory } from 'react-router-dom';
-import { fetchCategoriesAsync } from '../actions/categories';
 import { addMeasurementsAsync } from '../actions/measurements';
 import Spinner from '../components/Spinner';
 import Category from '../components/Category';
@@ -12,7 +11,6 @@ const Measurements = ({
   categories,
   user,
   measurements,
-  fetchCategories,
   addMeasurements,
 }) => {
   const [loading, setLoading] = useState(false);
@@ -37,7 +35,6 @@ const Measurements = ({
     if (message === 'Categories fetched') setLoading(false);
     else if (accessToken !== '' && typeof accessToken !== 'undefined') {
       setLoading(true);
-      fetchCategories(accessToken);
     } else if (accessToken === '') history.push('/login');
   }, [loading, message, list, messageMeasurements]);
 
@@ -111,7 +108,6 @@ Measurements.propTypes = {
   measurements: PropTypes.shape({
     message: PropTypes.string,
   }).isRequired,
-  fetchCategories: PropTypes.func.isRequired,
   addMeasurements: PropTypes.func.isRequired,
 };
 
@@ -123,7 +119,6 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  fetchCategories: token => dispatch(fetchCategoriesAsync(token)),
   addMeasurements: (carboHydrates, fats, proteins, token, user) => (
     dispatch(addMeasurementsAsync(carboHydrates, fats, proteins, token, user))
   ),

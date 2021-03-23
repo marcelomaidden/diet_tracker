@@ -4,13 +4,22 @@ import { PropTypes } from 'prop-types';
 import { useHistory, Link } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import { setCredentialsAsync } from '../actions/credentials';
+import { fetchCategoriesAsync } from '../actions/categories';
+import { fetchMeasurementsAsync } from '../actions/measurements';
 
-const Login = ({ credentials, setCredentials }) => {
+const Login = ({
+  credentials,
+  setCredentials,
+  fetchCategories,
+  fetchMeasurements,
+  user,
+}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState('');
   const [error, setError] = useState(false);
+  const { id } = user.info;
   const history = useHistory();
   const { message, accessToken } = credentials;
 
@@ -19,12 +28,15 @@ const Login = ({ credentials, setCredentials }) => {
       setError(true);
       setAlert(message);
       setLoading(false);
-    } else if (accessToken !== '' && typeof accessToken !== 'undefined') history.push('/');
-    else if (loading) {
+    } else if (id !== '') {
+      fetchCategories(accessToken);
+      fetchMeasurements(accessToken, id);
+      history.push('/dashboard');
+    } else if (loading) {
       setAlert('Loading');
       setError(false);
     }
-  }, [loading, accessToken, message]);
+  }, [loading, message, id]);
 
   const handleLogin = () => {
     setLoading(true);
@@ -89,15 +101,29 @@ Login.propTypes = {
     message: PropTypes.string.isRequired,
     accessToken: PropTypes.string.isRequired,
   }).isRequired,
+  user: PropTypes.shape({
+    info: PropTypes.shape({
+      id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    }),
+  }).isRequired,
   setCredentials: PropTypes.func.isRequired,
+  fetchCategories: PropTypes.func.isRequired,
+  fetchMeasurements: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   credentials: state.credentials,
+  user: state.user,
 });
 
 const mapDispatchToProps = dispatch => ({
   setCredentials: (email, password) => dispatch(setCredentialsAsync(email, password)),
+  fetchCategories: accessToken => (
+    dispatch(fetchCategoriesAsync(accessToken))
+  ),
+  fetchMeasurements: (accessToken, id) => (
+    dispatch(fetchMeasurementsAsync(accessToken, id))
+  ),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

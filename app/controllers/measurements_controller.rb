@@ -1,6 +1,11 @@
 class MeasurementsController < ApplicationController
+  before_action :doorkeeper_authorize!
+
   def index
-    
+    user=User.find(current_resource_owner.id)
+    measurements=user.measurements.order(created_at: :desc)
+
+    render json: measurements
   end
 
   def create
@@ -23,6 +28,11 @@ class MeasurementsController < ApplicationController
   end
 
   private
+ # Find the user that owns the access token
+  def current_resource_owner
+    User.find(doorkeeper_token.resource_owner_id) if doorkeeper_token
+  end
+
   def measurements_params
     params.require(:measurement).permit(:user, :Carbohydrates, :Fats, :Proteins)
   end
