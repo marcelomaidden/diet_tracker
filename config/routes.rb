@@ -1,9 +1,4 @@
 Rails.application.routes.draw do
-  get 'measurements/index'
-  get 'measurements/create'
-  get 'categories/index'
-  get 'categories/show'
-  get 'users/create'
   use_doorkeeper do
     skip_controllers :authorizations, :applications, :authorized_applications
   end
@@ -14,6 +9,7 @@ Rails.application.routes.draw do
   resources :categories, only: %w[show index]
 
   resources :measurements, only: %w[index create]
+  get 'measurements/today', to: 'measurements#today'
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 
   # Frontend routes

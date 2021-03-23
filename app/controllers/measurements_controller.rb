@@ -8,8 +8,16 @@ class MeasurementsController < ApplicationController
     render json: measurements
   end
 
+  def today
+    user=User.find(current_resource_owner.id)
+    measurements=user.measurements.where(created_at: Date.today.all_day)
+
+    render json: measurements
+  end
+
   def create
     user=measurements_params[:user]
+    added_measurements = []
     measurements_params.each do |index, measure|
       if ["Carbohydrates", "Proteins", "Fats"].include?(index)
         measurement = Measurement.new
@@ -17,11 +25,11 @@ class MeasurementsController < ApplicationController
         measurement.user_id = user
         measurement.category_id = category.id
         measurement.value = measure
-        measurement.save
+        added_measurements.push(measurement) if measurement.save
       end
     end
 
-    render json: { message: "Success" }
+    render json: added_measurements
     
   rescue
     render json: { status: :unprocessable_entity }

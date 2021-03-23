@@ -5,13 +5,14 @@ import { useHistory, Link } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import { setCredentialsAsync } from '../actions/credentials';
 import { fetchCategoriesAsync } from '../actions/categories';
-import { fetchMeasurementsAsync } from '../actions/measurements';
+import { fetchMeasurementsAsync, fetchTodaysMeasurementsAsync } from '../actions/measurements';
 
 const Login = ({
   credentials,
   setCredentials,
   fetchCategories,
   fetchMeasurements,
+  fetchTodaysMeasurements,
   user,
 }) => {
   const [email, setEmail] = useState('');
@@ -30,7 +31,8 @@ const Login = ({
       setLoading(false);
     } else if (id !== '') {
       fetchCategories(accessToken);
-      fetchMeasurements(accessToken, id);
+      fetchMeasurements(accessToken);
+      fetchTodaysMeasurements(accessToken);
       history.push('/dashboard');
     } else if (loading) {
       setAlert('Loading');
@@ -109,6 +111,7 @@ Login.propTypes = {
   setCredentials: PropTypes.func.isRequired,
   fetchCategories: PropTypes.func.isRequired,
   fetchMeasurements: PropTypes.func.isRequired,
+  fetchTodaysMeasurements: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -121,8 +124,11 @@ const mapDispatchToProps = dispatch => ({
   fetchCategories: accessToken => (
     dispatch(fetchCategoriesAsync(accessToken))
   ),
-  fetchMeasurements: (accessToken, id) => (
-    dispatch(fetchMeasurementsAsync(accessToken, id))
+  fetchMeasurements: accessToken => (
+    dispatch(fetchMeasurementsAsync(accessToken))
+  ),
+  fetchTodaysMeasurements: accessToken => (
+    dispatch(fetchTodaysMeasurementsAsync(accessToken))
   ),
 });
 

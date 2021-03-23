@@ -32,9 +32,8 @@ const Measurements = ({
       setProteins(0);
       setFats(0);
     }
-    if (message === 'Categories fetched') setLoading(false);
-    else if (accessToken !== '' && typeof accessToken !== 'undefined') {
-      setLoading(true);
+    if (accessToken !== '' && typeof accessToken !== 'undefined') {
+      setLoading(false);
     } else if (accessToken === '') history.push('/login');
   }, [loading, message, list, messageMeasurements]);
 

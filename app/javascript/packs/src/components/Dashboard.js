@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 
 const Dashboard = ({ measurements, categories, credentials }) => {
-  const { list: measurementsList } = measurements;
+  const { todayList: measurementsList } = measurements;
   const { list: categoriesList } = categories;
   const { accessToken } = credentials;
   const history = useHistory();
@@ -14,36 +14,45 @@ const Dashboard = ({ measurements, categories, credentials }) => {
   }, []);
 
   return (
-    <div className="d-flex flex-wrap">
-      {
-        measurementsList.map(measurement => (
-          <div key={measurement.id} className="card d-flex flex-row col-5 p-2 m-2">
-            <img
-              className="col-4"
-              style={{ width: '50%', height: '100px' }}
-              src={
-                categoriesList.filter(category => category.id === measurement.category_id)[0].photo
-              }
-              alt=""
-            />
-            <div className="card-body">
-              <p style={{ fontSize: '70%' }}>
-                {
-                  categoriesList.filter(category => category.id === measurement.category_id)[0].name
+    <div>
+      <div className="background-blue d-flex p-4">
+        <h1 className="h6 text-white mx-auto">Added today</h1>
+      </div>
+      <div className="d-flex flex-wrap overflow-auto">
+        {
+          measurementsList.map(measurement => (
+            <div key={measurement.id} className="card d-flex flex-row col-5 p-2 m-2">
+              <img
+                className="col-4"
+                style={{ width: '50%', height: '100px' }}
+                src={
+                  categoriesList.filter(category => (
+                    category.id === measurement.category_id
+                  ))[0].photo
                 }
-              </p>
-              <div className="card-text h1">{measurement.value}</div>
+                alt=""
+              />
+              <div className="card-body">
+                <p style={{ fontSize: '70%' }}>
+                  {
+                    categoriesList.filter(category => (
+                      category.id === measurement.category_id
+                    ))[0].name
+                  }
+                </p>
+                <div className="card-text h1">{measurement.value}</div>
+              </div>
             </div>
-          </div>
-        ))
-      }
+          ))
+        }
+      </div>
     </div>
   );
 };
 
 Dashboard.propTypes = {
   measurements: PropTypes.shape({
-    list: PropTypes.arrayOf(PropTypes.object),
+    todayList: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
   categories: PropTypes.shape({
     list: PropTypes.arrayOf(PropTypes.object),
