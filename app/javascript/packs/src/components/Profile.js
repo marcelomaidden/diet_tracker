@@ -5,7 +5,7 @@ import { useHistory, Link } from 'react-router-dom';
 import Header from './Header';
 
 const Menu = ({ user, credentials }) => {
-  const { photo, name } = user.info;
+  const { photo, name, email } = user.info;
   const { accessToken } = credentials;
   const history = useHistory();
 
@@ -15,13 +15,12 @@ const Menu = ({ user, credentials }) => {
 
   return (
     <div>
-      <Header title="More" />
-      <Link to="/profile" className="text-decoration-none">
-        <div className="background-white p-3">
-          <img src={photo} alt="Profile" className="rounded-circle menu-profile" />
-          <span className="p-2">{name}</span>
-        </div> 
-      </Link>
+      <Header title="Profile" />
+      <div className="background-blue p-3 d-flex flex-column">
+        <img src={photo} alt="Profile" className="mx-auto rounded-circle profile" />
+        <div className="p-2 mx-auto text-white">{name}</div>
+        <div className="p-2 mx-auto text-white">{email}</div>
+      </div> 
     </div>
   )
 };
@@ -31,6 +30,7 @@ Menu.propTypes = {
     info: PropTypes.shape({
       photo: PropTypes.string,
       name: PropTypes.string,
+      email: PropTypes.string,
     })
   }).isRequired,
   credentials: PropTypes.shape({

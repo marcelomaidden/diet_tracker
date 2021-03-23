@@ -15,6 +15,7 @@ import Login from './src/containers/Login';
 import SignUp from './src/containers/SignUp';
 import Dashboard from './src/components/Dashboard';
 import Menu from './src/components/Menu';
+import Profile from './src/components/Profile';
 import Measurements from './src/containers/Measurements';
 import rootReducer from './src/reducers';
 
@@ -33,6 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <Route path="/sign-up" exact component={SignUp} />
               <Route path="/dashboard" exact component={Dashboard} />
               <Route path="/menu" exact component={Menu} />
+              <Route path="/profile" exact component={Profile} />
             </Switch>
           </div>
           <NavBar />
