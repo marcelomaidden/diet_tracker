@@ -26,6 +26,7 @@ const CategoryForm = ({ name, photo, handleMeasure }) => (
 CategoryForm.propTypes = {
   name: PropTypes.string.isRequired,
   photo: PropTypes.string.isRequired,
+  handleMeasure: PropTypes.func.isRequired,
 };
 
 export default CategoryForm;

@@ -33,7 +33,7 @@ const NavBar = ({ credentials }) => {
                 Dashboard
               </Link>
               <Link
-                to="/measurements"
+                to="/measures"
                 className="background-dark
                   p-4
                   text-decoration-none

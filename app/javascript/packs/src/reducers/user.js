@@ -7,7 +7,9 @@ import {
 import { CREATE_USER_CREDENTIALS } from '../actions/credentials';
 
 const initialState = {
-  info: { name: '', email: '', photo: '' },
+  info: {
+    id: '', name: '', email: '', photo: '',
+  },
   message: '',
   errors: [],
 };
