@@ -1,7 +1,7 @@
 import { CHANGE_SELECTED } from '../actions/menu';
 
 const initialState = {
-  selected: 'dashboard',
+  selected: 'measures',
 };
 
 const menuReducer = (state = initialState, action) => {
