@@ -21,7 +21,15 @@ const Dashboard = ({ measurements, categories, credentials }) => {
       <div className="d-flex flex-wrap">
         {
           measurementsList.map(measurement => (
-            <div key={measurement.id} className="card d-flex flex-row col-5 p-2 m-2">
+            <div key={measurement.id} className="card
+              d-flex
+              flex-column
+              flex-md-row
+              col-md-5
+              col-12
+              p-2 
+              m-2"
+            >
               <img
                 className="col-4"
                 style={{ width: '50%', height: '100px' }}
