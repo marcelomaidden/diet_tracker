@@ -30,13 +30,16 @@ const Measurements = ({
     if (messageMeasurements === 'success') {
       setLoading(false);
       setMessageMeasurement('Measurements added');
+      setCarbohydrates(0);
+      setProteins(0);
+      setFats(0);
     }
     if (message === 'Categories fetched') setLoading(false);
     else if (accessToken !== '' && typeof accessToken !== 'undefined') {
       setLoading(true);
       fetchCategories(accessToken);
     } else if (accessToken === '') history.push('/login');
-  }, [loading, message, messageMeasurement]);
+  }, [loading, message, list, messageMeasurements]);
 
   const setMeasure = e => {
     const { name, value } = e.target;

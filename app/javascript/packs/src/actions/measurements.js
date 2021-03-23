@@ -1,8 +1,8 @@
 export const ADD_MEASUREMENTS = 'ADD_MEASUREMENTS';
 export const ADD_MEASUREMENTS_ERROR = 'ADD_MEASUREMENTS_ERROR';
 
-export const addMeasurements = (carbohydrates, fats, proteins) => (
-  { type: ADD_MEASUREMENTS, measurements: { carbohydrates, fats, proteins } }
+export const addMeasurements = (Carbohydrates, Fats, Proteins) => (
+  { type: ADD_MEASUREMENTS, measurements: {Carbohydrates, Fats, Proteins} }
 );
 export const addMeasurementsError = () => ({ type: ADD_MEASUREMENTS_ERROR });
 
