@@ -2,7 +2,7 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 
 const CategoryForm = ({ name, photo, handleMeasure }) => (
-  <li className="mb-3 p-2" style={{backgroundImage: `url(${photo})`}}>
+  <li className="mb-3 p-2" style={{ backgroundImage: `url(${photo})` }}>
     <span className="text-white font-bold">{ name }</span>
     <div className="d-flex flex-column mt-3">
       <div className="input-group mb-3">
