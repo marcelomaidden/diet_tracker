@@ -11,14 +11,14 @@ const Dashboard = ({ measurements, categories, credentials }) => {
 
   useEffect(() => {
     if (accessToken === '' || accessToken === 'undefined') history.push('/login');
-  }, []);
+  }, [measurementsList]);
 
   return (
     <div>
       <div className="background-blue d-flex p-4">
         <h1 className="h6 text-white mx-auto">Added today</h1>
       </div>
-      <div className="d-flex flex-wrap overflow-auto">
+      <div className="d-flex flex-wrap">
         {
           measurementsList.map(measurement => (
             <div key={measurement.id} className="card d-flex flex-row col-5 p-2 m-2">

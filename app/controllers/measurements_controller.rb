@@ -24,6 +24,7 @@ class MeasurementsController < ApplicationController
         category = Category.find_by(name: index)
         measurement.user_id = user
         measurement.category_id = category.id
+        measurement.created_at = measurements_params[:createdAt]
         measurement.value = measure
         added_measurements.push(measurement) if measurement.save
       end
@@ -42,6 +43,6 @@ class MeasurementsController < ApplicationController
   end
 
   def measurements_params
-    params.require(:measurement).permit(:user, :Carbohydrates, :Fats, :Proteins)
+    params.require(:measurement).permit(:user, :Carbohydrates, :Fats, :Proteins, :createdAt)
   end
 end

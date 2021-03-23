@@ -21,6 +21,7 @@ const Measurements = ({
   const [carboHydrates, setCarbohydrates] = useState(0);
   const [proteins, setProteins] = useState(0);
   const [fats, setFats] = useState(0);
+  const [createdAt, setCreatedAt] = useState(new Date().toLocaleDateString());
   const [messageMeasurement, setMessageMeasurement] = useState('');
   const history = useHistory();
 
@@ -36,6 +37,10 @@ const Measurements = ({
       setLoading(false);
     } else if (accessToken === '') history.push('/login');
   }, [loading, message, list, messageMeasurements]);
+
+  const handleDate = e => {
+    setCreatedAt(e.target.value);
+  };
 
   const setMeasure = e => {
     const { name, value } = e.target;
@@ -55,6 +60,17 @@ const Measurements = ({
     <div className="measurements">
       <div className="background-blue d-flex p-4">
         <h1 className="h6 text-white mx-auto">Add measurement</h1>
+      </div>
+      <div className="input-group mb-3 mt-3">
+        <input
+          type="date"
+          className="form-control"
+          placeholder="Enter the date"
+          aria-label="date"
+          name={createdAt}
+          onChange={e => { handleDate(e); }}
+          aria-describedby="basic-addon1"
+        />
       </div>
       { loading ? <Spinner />
         : (
@@ -82,7 +98,7 @@ const Measurements = ({
         onClick={() => {
           setLoading(true);
           setMessageMeasurement('');
-          addMeasurements(carboHydrates, fats, proteins, accessToken, id);
+          addMeasurements(carboHydrates, fats, proteins, accessToken, id, createdAt);
         }}
       >
         Enter
@@ -118,8 +134,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  addMeasurements: (carboHydrates, fats, proteins, token, user) => (
-    dispatch(addMeasurementsAsync(carboHydrates, fats, proteins, token, user))
+  addMeasurements: (carboHydrates, fats, proteins, token, user, createdAt) => (
+    dispatch(addMeasurementsAsync(carboHydrates, fats, proteins, token, user, createdAt))
   ),
 });
 

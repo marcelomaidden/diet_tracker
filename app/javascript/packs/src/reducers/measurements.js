@@ -1,5 +1,6 @@
 import {
   ADD_MEASUREMENTS,
+  ADD_TODAYS_MEASUREMENTS,
   ADD_MEASUREMENTS_ERROR,
   FETCH_MEASUREMENTS_ERROR,
   FETCH_MEASUREMENTS_SUCCESS,
@@ -14,8 +15,10 @@ const initialState = {
 
 const measurementsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case ADD_MEASUREMENTS:
+    case ADD_TODAYS_MEASUREMENTS:
       return { ...state, todayList: [...state.todayList, action.measurement], message: 'success' };
+    case ADD_MEASUREMENTS:
+      return { ...state, list: [...state.list, action.measurement], message: 'success' };
     case ADD_MEASUREMENTS_ERROR:
       return { ...state, message: 'Invalid measurements' };
     case FETCH_MEASUREMENTS_ERROR:

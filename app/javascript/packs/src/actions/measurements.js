@@ -1,4 +1,5 @@
 export const ADD_MEASUREMENTS = 'ADD_MEASUREMENTS';
+export const ADD_TODAYS_MEASUREMENTS = 'ADD_TODAYS_MEASUREMENTS';
 export const ADD_MEASUREMENTS_ERROR = 'ADD_MEASUREMENTS_ERROR';
 export const FETCH_MEASUREMENTS_SUCCESS = 'FETCH_MEASUREMENTS_SUCCESS';
 export const FETCH_TODAYS_MEASUREMENTS_SUCCESS = 'FETCH_TODAYS_MEASUREMENTS_SUCCESS';
@@ -6,6 +7,10 @@ export const FETCH_MEASUREMENTS_ERROR = 'FETCH_MEASUREMENTS_ERROR';
 
 export const addMeasurements = measurement => (
   { type: ADD_MEASUREMENTS, measurement }
+);
+
+export const addTodaysMeasurements = measurement => (
+  { type: ADD_TODAYS_MEASUREMENTS, measurement }
 );
 
 export const fetchMeasurementsSuccess = measurements => ({
@@ -58,7 +63,14 @@ export const fetchTodaysMeasurementsAsync = accessToken => async dispatch => fet
 
 export const addMeasurementsError = () => ({ type: ADD_MEASUREMENTS_ERROR });
 
-export const addMeasurementsAsync = (Carbohydrates, Fats, Proteins, accessToken, user) => (
+export const addMeasurementsAsync = (
+  Carbohydrates,
+  Fats,
+  Proteins,
+  accessToken,
+  user,
+  createdAt,
+) => (
   async dispatch => fetch('measurements', {
     method: 'post',
     headers: {
@@ -71,6 +83,7 @@ export const addMeasurementsAsync = (Carbohydrates, Fats, Proteins, accessToken,
         Fats,
         Proteins,
         user,
+        createdAt,
       },
     }),
   })
@@ -80,7 +93,20 @@ export const addMeasurementsAsync = (Carbohydrates, Fats, Proteins, accessToken,
     })
     .then(data => {
       if (data.type !== ADD_MEASUREMENTS_ERROR) {
-        data.forEach(measurement => dispatch(addMeasurements(measurement)));
+        data.forEach(measurement => {
+          let measurementDate = createdAt.split('-');
+          measurementDate = new Date(
+            measurementDate[0],
+            measurementDate[1] - 1,
+            measurementDate[2],
+          );
+          measurementDate.setHours(0, 0, 0, 0);
+          const today = new Date();
+          today.setHours(0, 0, 0, 0);
+          if (measurementDate.getTime() === today.getTime()) {
+            dispatch(addTodaysMeasurements(measurement));
+          } else dispatch(addMeasurements(measurement));
+        });
       }
     })
     .catch(() => dispatch(addMeasurementsError()))

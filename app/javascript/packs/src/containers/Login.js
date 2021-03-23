@@ -33,7 +33,7 @@ const Login = ({
       fetchCategories(accessToken);
       fetchMeasurements(accessToken);
       fetchTodaysMeasurements(accessToken);
-      history.push('/dashboard');
+      history.push('/measures');
     } else if (loading) {
       setAlert('Loading');
       setError(false);
