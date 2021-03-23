@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
-import { useHistory, Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import Header from './Header';
 
 const Menu = ({ user, credentials }) => {
@@ -20,9 +20,9 @@ const Menu = ({ user, credentials }) => {
         <img src={photo} alt="Profile" className="mx-auto rounded-circle profile" />
         <div className="p-2 mx-auto text-white profile-name">{name}</div>
         <div className="p-2 mx-auto gray-color">{email}</div>
-      </div> 
+      </div>
     </div>
-  )
+  );
 };
 
 Menu.propTypes = {
@@ -31,7 +31,7 @@ Menu.propTypes = {
       photo: PropTypes.string,
       name: PropTypes.string,
       email: PropTypes.string,
-    })
+    }),
   }).isRequired,
   credentials: PropTypes.shape({
     accessToken: PropTypes.string,

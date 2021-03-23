@@ -20,10 +20,10 @@ const Menu = ({ user, credentials }) => {
         <div className="background-white p-3">
           <img src={photo} alt="Profile" className="rounded-circle menu-profile" />
           <span className="p-2">{name}</span>
-        </div> 
+        </div>
       </Link>
     </div>
-  )
+  );
 };
 
 Menu.propTypes = {
@@ -31,7 +31,7 @@ Menu.propTypes = {
     info: PropTypes.shape({
       photo: PropTypes.string,
       name: PropTypes.string,
-    })
+    }),
   }).isRequired,
   credentials: PropTypes.shape({
     accessToken: PropTypes.string,
