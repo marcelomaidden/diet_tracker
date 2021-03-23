@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import { addMeasurementsAsync } from '../actions/measurements';
 import Spinner from '../components/Spinner';
 import Category from '../components/Category';
+import Header from '../components/Header';
 
 const Measurements = ({
   credentials,
@@ -58,9 +59,7 @@ const Measurements = ({
 
   return (
     <div className="measurements">
-      <div className="background-blue d-flex p-4">
-        <h1 className="h6 text-white mx-auto">Add measurement</h1>
-      </div>
+      <Header title="Add measurement" />
       <div className="input-group mb-3 mt-3">
         <input
           type="date"

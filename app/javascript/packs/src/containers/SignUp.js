@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { PropTypes } from 'prop-types';
 import { useHistory } from 'react-router-dom';
 import Spinner from '../components/Spinner';
+import Header from '../components/Header';
 import { createUserAsync } from '../actions/user';
 
 const SignUp = ({ user, createUser }) => {
@@ -33,8 +34,9 @@ const SignUp = ({ user, createUser }) => {
   };
 
   return (
-    <div className="d-flex flex-column mx-auto w-75">
-      <h1 className="h4 mx-auto mt-3 mb-3">Fill your information</h1>
+    <div>
+      <Header title="Fill your information" />
+      <div className="d-flex flex-column mx-auto w-75 mt-3">
       <div className="input-group mb-3">
         <input
           type="text"
@@ -88,18 +90,19 @@ const SignUp = ({ user, createUser }) => {
         Enter
       </button>
       {loading ? <Spinner /> : ''}
-      <div className="alerts">
-        {
-          alerts
-            ? (
-              alerts.map(alert => (
-                <div className="alert alert-danger mt-2" role="alert" key={alert}>
-                  {alert}
-                </div>
-              ))
-            )
-            : ''
-        }
+        <div className="alerts">
+          {
+            alerts
+              ? (
+                alerts.map(alert => (
+                  <div className="alert alert-danger mt-2" role="alert" key={alert}>
+                    {alert}
+                  </div>
+                ))
+              )
+              : ''
+          }
+        </div>
       </div>
     </div>
   );

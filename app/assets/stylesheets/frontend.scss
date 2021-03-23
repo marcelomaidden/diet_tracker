@@ -9,6 +9,11 @@
   --gray-color: #8090a0;
 }
 
+a {
+  color: var(--gray-color);
+  font-weight: bold;
+}
+
 @font-face {
   font-family: helvetica_light;
   src: url(fonts/helvetica_light.ttf);
@@ -48,6 +53,10 @@ body {
 
 .background-green {
   background-color: var(--green-color);
+}
+
+.background-white {
+  background-color: #ffffff;
 }
 
 .main {

@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   get 'menu', to: 'frontend#index'
   get 'progress', to: 'frontend#index'
   get 'dashboard', to: 'frontend#index'
+  get 'menu', to: 'frontend#index'
+  get 'profile', to: 'frontend#index'
 end
