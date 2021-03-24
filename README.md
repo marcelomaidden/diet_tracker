@@ -16,7 +16,7 @@
 
 [Diet tracking app](https://marcelomaidden-diet-tracker.herokuapp.com/)
 
-## Entity Relashionship Diagram
+## Entity Relationship Diagram
 ![erd](./doc/erd.png)
 
 
