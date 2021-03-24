@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :doorkeeper_authorize!, except: [:create, :me]
+  before_action :doorkeeper_authorize!, except: %i[create me]
   def create
     user = User.new(user_params)
 

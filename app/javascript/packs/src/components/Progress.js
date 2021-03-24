@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
@@ -8,23 +8,23 @@ const Progress = ({ measurements, categories, credentials }) => {
   const { list: categoriesList } = categories;
   const { accessToken } = credentials;
   const history = useHistory();
-  const meses = ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul","Aug","Sep","Oct","Nov","Dec"];
+  const meses = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
   useEffect(() => {
     if (accessToken === '' || accessToken === 'undefined') history.push('/login');
   }, []);
 
-  const formatDate = date => {
-    date = new Date(date);
-    return ((date.getDate() + 1
-    + 
-    " " 
-    + 
-    meses[(date.getMonth())]
-    + 
-    " "
-    +
-    date.getFullYear())
+  const formatDate = createdAt => {
+    const date = new Date(createdAt);
+    return ((`${date.getDate()
+
+    } ${
+
+      meses[(date.getMonth())]
+
+    } ${
+
+      date.getFullYear()}`)
     );
   };
 
@@ -79,7 +79,7 @@ const Progress = ({ measurements, categories, credentials }) => {
 
 Progress.propTypes = {
   measurements: PropTypes.shape({
-    todayList: PropTypes.arrayOf(PropTypes.object),
+    list: PropTypes.arrayOf(PropTypes.object),
   }).isRequired,
   categories: PropTypes.shape({
     list: PropTypes.arrayOf(PropTypes.object),

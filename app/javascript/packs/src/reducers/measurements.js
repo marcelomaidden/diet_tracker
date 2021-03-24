@@ -18,7 +18,7 @@ const measurementsReducer = (state = initialState, action) => {
     case ADD_TODAYS_MEASUREMENTS:
       return { ...state, todayList: [...state.todayList, action.measurement], message: 'success' };
     case ADD_MEASUREMENTS:
-      return { ...state, list: [...state.list, action.measurement], message: 'success' };
+      return { ...state, list: [action.measurement, ...state.list], message: 'success' };
     case ADD_MEASUREMENTS_ERROR:
       return { ...state, message: 'Invalid measurements' };
     case FETCH_MEASUREMENTS_ERROR:

@@ -6,13 +6,13 @@ class CategoriesController < ApplicationController
   def show
     category = Category.find(categories_params[:id])
 
-    render json: { category: category } 
-    
-    rescue
-      render json: { error: "", status: :unprocessable_entity}
+    render json: { category: category }
+  rescue StandardError
+    render json: { error: '', status: :unprocessable_entity }
   end
 
   private
+
   def categories_params
     params.permit(:id)
   end

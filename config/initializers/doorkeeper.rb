@@ -9,9 +9,9 @@ Doorkeeper.configure do
   # resource_owner_authenticator do
   #   #current_user || warden.authenticate!(scope: :user)
   #   u = User.find_by(email: params[:email])
-    
+
   #   current_user || u if u.valid_password?(params[:password])
-    
+
   #   # Put your resource owner authentication logic here.
   #   # Example implementation:
   #   #   User.find_by(id: session[:user_id]) || redirect_to(new_user_session_url)
@@ -23,7 +23,7 @@ Doorkeeper.configure do
   end
 
   grant_flows %w[password]
-  
+
   allow_blank_redirect_uri true
 
   skip_authorization do
