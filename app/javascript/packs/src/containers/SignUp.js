@@ -5,8 +5,17 @@ import { useHistory } from 'react-router-dom';
 import Spinner from '../components/Spinner';
 import Header from '../components/Header';
 import { createUserAsync } from '../actions/user';
+import { fetchCategoriesAsync } from '../actions/categories';
+import { fetchMeasurementsAsync, fetchTodaysMeasurementsAsync } from '../actions/measurements';
 
-const SignUp = ({ user, createUser }) => {
+const SignUp = ({
+  user,
+  createUser,
+  fetchCategories,
+  fetchMeasurements,
+  fetchTodaysMeasurements,
+  credentials,
+}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [name, setName] = useState('');
@@ -15,10 +24,14 @@ const SignUp = ({ user, createUser }) => {
   const [photo, setPhoto] = useState([]);
   const history = useHistory();
   const { message, errors } = user;
+  const { accessToken } = credentials;
 
   useEffect(() => {
     if (message === 'success') {
-      history.push('/');
+      fetchCategories(accessToken);
+      fetchMeasurements(accessToken);
+      fetchTodaysMeasurements(accessToken);
+      history.push('/measures');
     } else if (errors.length > 0) {
       setAlerts(errors);
       setLoading(false);
@@ -109,21 +122,37 @@ const SignUp = ({ user, createUser }) => {
 };
 
 SignUp.propTypes = {
+  credentials: PropTypes.shape({
+    accessToken: PropTypes.string.isRequired,
+  }).isRequired,
   user: PropTypes.shape({
     message: PropTypes.string.isRequired,
     errors: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   createUser: PropTypes.func.isRequired,
+  fetchCategories: PropTypes.func.isRequired,
+  fetchMeasurements: PropTypes.func.isRequired,
+  fetchTodaysMeasurements: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   user: state.user,
+  credentials: state.credentials,
 });
 
 const mapDispatchToProps = dispatch => ({
   createUser: (name, email, password, photo) => {
     dispatch(createUserAsync(name, email, password, photo));
   },
+  fetchCategories: accessToken => (
+    dispatch(fetchCategoriesAsync(accessToken))
+  ),
+  fetchMeasurements: accessToken => (
+    dispatch(fetchMeasurementsAsync(accessToken))
+  ),
+  fetchTodaysMeasurements: accessToken => (
+    dispatch(fetchTodaysMeasurementsAsync(accessToken))
+  ),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(SignUp);
