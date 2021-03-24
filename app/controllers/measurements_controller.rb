@@ -3,7 +3,8 @@ class MeasurementsController < ApplicationController
 
   def index
     user=User.find(current_resource_owner.id)
-    measurements=user.measurements.order(created_at: :desc)
+    measurements=user.measurements.where("created_at <= ?", Date.today)
+    measurements=measurements.order(created_at: :desc)
 
     render json: measurements
   end

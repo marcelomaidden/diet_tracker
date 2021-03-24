@@ -28,7 +28,8 @@ const NavBar = ({ credentials, changeSelected, menu }) => {
                 name="dashboard"
                 className={`${selected === 'dashboard' ? 'background-blue' : 'background-dark'}
                 p-4
-                w-25
+                col-12
+                col-md-3
                 justify-content-center
                 align-items-center
                 text-decoration-none
@@ -48,7 +49,8 @@ const NavBar = ({ credentials, changeSelected, menu }) => {
                   flex-column
                   text-white border
                   text-center
-                  w-25`}
+                  col-12
+                  col-md-3`}
               >
                 <i
                   className="fa fa-bar-chart"
@@ -65,7 +67,8 @@ const NavBar = ({ credentials, changeSelected, menu }) => {
                   p-4
                   text-decoration-none
                   d-flex
-                  w-25
+                  col-12
+                  col-md-3
                   flex-column
                   text-center
                   text-white
@@ -83,7 +86,8 @@ const NavBar = ({ credentials, changeSelected, menu }) => {
                 to="/menu"
                 className={`${selected === 'menu' ? 'background-blue' : 'background-dark'}
                   p-4
-                  w-25
+                  col-12
+                  col-md-3
                   d-flex
                   flex-column
                   text-center
