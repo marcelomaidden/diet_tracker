@@ -35,42 +35,44 @@ const Progress = ({ measurements, categories, credentials }) => {
       </div>
       <div className="d-flex flex-wrap">
         {
-          measurementsList.map(measurement => (
-            <div key={measurement.id}>
-              <div className="p-2">
-                { formatDate(measurement.created_at) }
-              </div>
-              <div
-                className="card
-                d-flex
-                flex-row
-                col-12
-                p-2
-                m-2"
-              >
-                <img
-                  className="col-4"
-                  style={{ width: '30%', height: '100px' }}
-                  src={
-                    categoriesList.filter(category => (
-                      category.id === measurement.category_id
-                    ))[0].photo
-                  }
-                  alt=""
-                />
-                <div className="card-body">
-                  <p style={{ fontSize: '70%' }}>
-                    {
+          measurementsList.length === 0
+            ? <div className="alert alert-info w-100 mt-5">There is nothing here yet</div>
+            : measurementsList.map(measurement => (
+              <div key={measurement.id}>
+                <div className="p-2">
+                  { formatDate(measurement.created_at) }
+                </div>
+                <div
+                  className="card
+                  d-flex
+                  flex-row
+                  w-100
+                  p-2
+                  m-2"
+                >
+                  <img
+                    className="col-4"
+                    style={{ width: '30%', height: '100px' }}
+                    src={
                       categoriesList.filter(category => (
                         category.id === measurement.category_id
-                      ))[0].name
+                      ))[0].photo
                     }
-                  </p>
-                  <div className="card-text h1">{measurement.value}</div>
+                    alt=""
+                  />
+                  <div className="card-body">
+                    <p style={{ fontSize: '70%' }}>
+                      {
+                        categoriesList.filter(category => (
+                          category.id === measurement.category_id
+                        ))[0].name
+                      }
+                    </p>
+                    <div className="card-text h1">{measurement.value}</div>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))
+            ))
         }
       </div>
     </div>

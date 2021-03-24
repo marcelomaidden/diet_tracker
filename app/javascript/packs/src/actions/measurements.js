@@ -105,7 +105,8 @@ export const addMeasurementsAsync = (
           today.setHours(0, 0, 0, 0);
           if (measurementDate.getTime() === today.getTime()) {
             dispatch(addTodaysMeasurements(measurement));
-          } else dispatch(addMeasurements(measurement));
+          }
+          dispatch(addMeasurements(measurement));
         });
       }
     })
