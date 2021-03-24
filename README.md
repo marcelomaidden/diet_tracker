@@ -16,6 +16,10 @@
 
 [Diet tracking app](https://marcelomaidden-diet-tracker.herokuapp.com/)
 
+## Entity Relashionship Diagram
+![erd](./doc/erd.png)
+
+
 ## Built With
 
 - React
