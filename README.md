@@ -118,10 +118,10 @@ Give a ⭐️ if you like this project!
 - Rails
 - Doorkeeper
 - Unsplash
-- [https://unsplash.com/@sigmund] @sigmund - Unsplash (Carbohydrate photo)
-- [https://unsplash.com/@tempestdesigner] @tempestdesigner - Unsplash (Protein photo)
-- [https://unsplash.com/@enginakyurt] @enginakyurt - Unsplash (Fat photo)
-- [https://br.depositphotos.com/] Deposit photos - (profile photo)
+- [@sigmund](https://unsplash.com/@sigmund) - Unsplash (Carbohydrate photo)
+- [@tempestdesigner](https://unsplash.com/@tempestdesigner) - Unsplash (Protein photo)
+- [@enginakyurt](https://unsplash.com/@enginakyurt) - Unsplash (Fat photo)
+- [Deposit photos](https://br.depositphotos.com/) - (profile photo)
 
 ## 📝 License
 
