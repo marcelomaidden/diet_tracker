@@ -1,11 +1,9 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import Category from './Category';
 
-const handleMeasure = () => {
-  return true;
-}
+const handleMeasure = () => true;
 
 describe('About', () => {
   test('Renders Category component', () => {
@@ -13,7 +11,6 @@ describe('About', () => {
       name="Carbohydrates"
       photo="photo-url"
       handleMeasure={handleMeasure}
-      />
-    );
-  })
+    />);
+  });
 });

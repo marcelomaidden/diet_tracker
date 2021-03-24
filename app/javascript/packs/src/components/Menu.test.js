@@ -14,7 +14,7 @@ it('Renders the Menu component with User info', () => {
       initialState:
       {
         user: {
-          info: { photo: "", name: "Marcelo" },
+          info: { photo: '', name: 'Marcelo' },
         },
       },
     },

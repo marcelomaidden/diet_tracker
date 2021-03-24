@@ -13,7 +13,7 @@ it('Renders the connected app with initialState', () => {
     {
       initialState:
       {
-        measurements: { list: [], todayList: [], message: "" },
+        measurements: { list: [], todayList: [], message: '' },
       },
     },
   );
@@ -30,33 +30,34 @@ it('Renders the connected app with measurements', () => {
     {
       initialState:
       {
-        categories: { list: [
+        categories: {
+          list: [
             {
               id: 1,
-              photo: "",
-              name: "Carbohydrates",
+              photo: '',
+              name: 'Carbohydrates',
             },
             {
               id: 2,
-              photo: "",
-              name: "Fats",
+              photo: '',
+              name: 'Fats',
             },
-          ]
+          ],
         },
-        measurements: { 
+        measurements: {
           list: [{
             id: 20,
             value: 300.0,
-            created_at: "2021-03-24 15:44:34.467098000 +0000",
+            created_at: '2021-03-24 15:44:34.467098000 +0000',
             category_id: 1,
           }],
           todayList: [{
             id: 20,
             value: 300.0,
-            created_at: "2021-03-24 15:44:34.467098000 +0000",
+            created_at: '2021-03-24 15:44:34.467098000 +0000',
             category_id: 2,
           }],
-          message: "" 
+          message: '',
         },
       },
     },
