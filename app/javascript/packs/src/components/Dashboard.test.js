@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import { render, screen } from '../test/testUtils';
+import { render } from '../test/testUtils';
+import { screen } from '@testing-library/react';
 import Dashboard from './Dashboard';
 
 it('Renders the connected app with initialState', () => {
