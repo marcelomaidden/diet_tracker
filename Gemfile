@@ -51,10 +51,10 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
-gem "rspec-rails", "~> 5.0", :groups => [:development, :test]
+gem 'rspec-rails', '~> 5.0', groups: %i[development test]
 
-gem "capybara", "~> 3.35", :groups => [:development, :test]
+gem 'capybara', '~> 3.35', groups: %i[development test]
 
-gem "selenium-webdriver", "~> 3.142", :group => :test
+gem 'selenium-webdriver', '~> 3.142', group: :test
 
-gem "webdrivers", "~> 4.6", :group => :test
+gem 'webdrivers', '~> 4.6', group: :test
