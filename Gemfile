@@ -35,6 +35,10 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 end
 
+group :test do
+  gem 'database_cleaner'
+end
+
 group :development do
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 4.1.0'
@@ -48,3 +52,9 @@ end
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 gem "rspec-rails", "~> 5.0", :groups => [:development, :test]
+
+gem "capybara", "~> 3.35", :groups => [:development, :test]
+
+gem "selenium-webdriver", "~> 3.142", :group => :test
+
+gem "webdrivers", "~> 4.6", :group => :test
