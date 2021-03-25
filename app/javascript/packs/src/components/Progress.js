@@ -13,15 +13,6 @@ import {
 const Progress = ({ measurements, categories, credentials }) => {
   const { list: measurementsList } = measurements;
   const { list: categoriesList } = categories;
-  const data =   [
-  {name: 'Carbohydrates', pv: 2400, amt: 2400},
-  {name: 'Carbohydrates', pv: 1398, amt: 2210},
-  {name: 'Carbohydrates', pv: 9800, amt: 2290},
-  {name: 'Carbohydrates', pv: 3908, amt: 2000},
-  {name: 'Proteins', pv: 4800, amt: 2181},
-  {name: 'Proteins', pv: 3800, amt: 2500},
-  {name: 'Proteins', pv: 4300, amt: 2100}
-  ];
   const { accessToken } = credentials;
   const history = useHistory();
   const meses = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -50,7 +41,9 @@ const Progress = ({ measurements, categories, credentials }) => {
         width={400}
         height={400}
         data={measurementsList}
-        margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+        margin={{
+          top: 5, right: 20, left: 10, bottom: 5,
+        }}
       >
         <XAxis dataKey="category_id" />
         <Tooltip />
@@ -61,7 +54,12 @@ const Progress = ({ measurements, categories, credentials }) => {
         {
           categoriesList.map(category => (
             <div key={category.id}>
-              <span>{category.id } - </span>
+              <span>
+                {category.id }
+                {' '}
+                -
+                {' '}
+              </span>
               <span>{category.name}</span>
             </div>
           ))
