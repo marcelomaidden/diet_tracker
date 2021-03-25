@@ -2,10 +2,26 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
+import {
+  LineChart,
+  XAxis,
+  Tooltip,
+  CartesianGrid,
+  Line,
+} from 'recharts';
 
 const Progress = ({ measurements, categories, credentials }) => {
   const { list: measurementsList } = measurements;
   const { list: categoriesList } = categories;
+  const data =   [
+  {name: 'Carbohydrates', pv: 2400, amt: 2400},
+  {name: 'Carbohydrates', pv: 1398, amt: 2210},
+  {name: 'Carbohydrates', pv: 9800, amt: 2290},
+  {name: 'Carbohydrates', pv: 3908, amt: 2000},
+  {name: 'Proteins', pv: 4800, amt: 2181},
+  {name: 'Proteins', pv: 3800, amt: 2500},
+  {name: 'Proteins', pv: 4300, amt: 2100}
+  ];
   const { accessToken } = credentials;
   const history = useHistory();
   const meses = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -30,6 +46,27 @@ const Progress = ({ measurements, categories, credentials }) => {
 
   return (
     <div>
+      <LineChart
+        width={400}
+        height={400}
+        data={measurementsList}
+        margin={{ top: 5, right: 20, left: 10, bottom: 5 }}
+      >
+        <XAxis dataKey="category_id" />
+        <Tooltip />
+        <CartesianGrid stroke="#f5f5f5" />
+        <Line type="monotone" dataKey="value" stroke="#387908" yAxisId={1} />
+      </LineChart>
+      <div className="alert alert-info w-100">
+        {
+          categoriesList.map(category => (
+            <div key={category.id}>
+              <span>{category.id } - </span>
+              <span>{category.name}</span>
+            </div>
+          ))
+        }
+      </div>
       <div className="background-blue d-flex p-4">
         <h1 className="h6 text-white mx-auto">Progress</h1>
       </div>
