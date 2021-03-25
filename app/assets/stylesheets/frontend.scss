@@ -1,0 +1,72 @@
+// Place all the styles related to the Frontend controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+:root {
+  --blue-color: #50b5e8;
+  --dark-color: #5b8092;
+  --green-color: #90e28a;
+  --light-color: #f3f4f6;
+  --gray-color: #8090a0;
+}
+
+a,
+.gray-color {
+  color: var(--gray-color);
+  font-weight: bold;
+}
+
+@font-face {
+  font-family: helvetica_light;
+  src: url(fonts/helvetica_light.ttf);
+}
+
+@font-face {
+  font-family: helvetica_bold;
+  src: url(fonts/helvetica_bold.ttf);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.button,
+.font-bold {
+  font-family: helvetica_bold, sans-serif;
+}
+
+button {
+  border-radius: 5px;
+}
+
+body {
+  color: var(--gray-color);
+  font-family: helvetica_light, sans-serif;
+}
+
+.background-blue {
+  background-color: var(--blue-color);
+}
+
+.background-dark {
+  background-color: var(--dark-color);
+}
+
+.background-light {
+  background-color: var(--light-color);
+}
+
+.background-green {
+  background-color: var(--green-color);
+}
+
+.background-white {
+  background-color: #fff;
+}
+
+.main {
+  height: 800px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
