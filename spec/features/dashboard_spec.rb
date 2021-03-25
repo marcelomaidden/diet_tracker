@@ -7,7 +7,6 @@ describe 'Dashboard', type: :feature do
     click_button 'Enter'
     click_on 'Dashboard'
 
-
     expect(page).to have_content 'Added today'
   end
 end
