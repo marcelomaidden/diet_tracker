@@ -15,6 +15,7 @@ const NavBar = ({ credentials, changeSelected, menu }) => {
           ? (
             <Link
               to="/login"
+              name="signin"
               className="background-blue p-4 w-25 text-decoration-none text-white border"
             >
               Sign-in
